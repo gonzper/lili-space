@@ -1,0 +1,17 @@
+/* app/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* ESTA É A NOVA SECÇÃO */
+  /* Aplicamos a imagem de fundo e garantimos que ela cobre tudo e fica fixa */
+  @apply bg-cover bg-center bg-fixed bg-no-repeat;
+  background-image: url('/background-texture.jpg'); /* Certifique-se que o nome corresponde ao seu ficheiro */
+}
+
+/* O resto do CSS permanece igual */
+h1, h2 {
+  font-family: "Comics San", serif;
+}

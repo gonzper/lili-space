@@ -1,17 +1,40 @@
-/* app/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  /* ESTA É A NOVA SECÇÃO */
-  /* Aplicamos a imagem de fundo e garantimos que ela cobre tudo e fica fixa */
   @apply bg-cover bg-center bg-fixed bg-no-repeat;
-  background-image: url('/background-texture.jpg'); /* Certifique-se que o nome corresponde ao seu ficheiro */
+  background-image: url("/background-texture.jpg");
+  font-family: var(--font-opensans);
 }
 
-/* O resto do CSS permanece igual */
-h1, h2 {
-  font-family: "Comics San", serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-playfair);
+}
+
+/* Gentle breathing for subtle background SVGs */
+.flower-breath {
+  animation: flower-breath 14s ease-in-out infinite;
+}
+
+@keyframes flower-breath {
+  0%, 100% {
+    opacity: 0.10;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.16;
+    transform: translateY(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower-breath {
+    animation: none !important;
+  }
 }

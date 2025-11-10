@@ -5,7 +5,7 @@ const ContactCtaSection = () => {
   return (
     <section id="contacto" className="bg-[#2E3E3B] text-white py-20 px-6">
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-semibold mb-4">Pronto para começar?</h2>
+        <h2 className="font-serif uppercase text-4xl md:text-6xl tracking-wide mb-8">Pronto para começar?</h2>
         <p className="opacity-90 mb-8">
           Entre em contacto para marcar uma sessão ou esclarecer dúvidas.
         </p>
@@ -22,4 +22,3 @@ const ContactCtaSection = () => {
 };
 
 export default ContactCtaSection;
-

@@ -11,26 +11,22 @@ const ServicesSection: FC = () => {
     {
       title: "TERAPIA",
       image: "/wellness-hero.jpg",
-      text:
-        "Apoio psicológico e psicoterapia focados em mudanças sustentadas e bem‑estar.",
+      text: "Apoio psicológico e psicoterapia focados em mudanças sustentadas e bem‑estar.",
     },
     {
       title: "MINDFULNESS",
       image: "/wellness-hero.jpg",
-      text:
-        "Prática de presença e regulação emocional para um dia‑a‑dia com mais calma.",
+      text: "Prática de presença e regulação emocional para um dia‑a‑dia com mais calma.",
     },
     {
       title: "COACHING",
-      image: "/wellness-hero.jpg",
-      text:
-        "Clareza de objetivos, plano de ação e acompanhamento para desbloquear o seu potencial.",
+      image: "/coaching.jpeg",
+      text: "Clareza de objetivos, plano de ação e acompanhamento para desbloquear o seu potencial.",
     },
     {
       title: "YOGA",
-      image: "/wellness-hero.jpg",
-      text:
-        "Movimento consciente, respiração e alinhamento para corpo e mente em equilíbrio.",
+      image: "/yoga.jpeg",
+      text: "Movimento consciente, respiração e alinhamento para corpo e mente em equilíbrio.",
     },
   ];
 
@@ -54,14 +50,9 @@ const ServicesSection: FC = () => {
       };
 
   return (
-    <section
-      id="servicos"
-      className="bg-[#E4E0DB] text-[#2E3E3B] py-24 px-6"
-    >
+    <section id="servicos" className="bg-[#E4E0DB] text-[#2E3E3B] py-24 px-6">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-3xl md:text-4xl tracking-wide mb-12">
-          Serviços
-        </h2>
+        <h2 className="font-serif uppercase text-4xl md:text-6xl tracking-wide text-center mb-16">Serviços</h2>
 
         <div className="space-y-24">
           {services.map((s, index) => (
@@ -75,7 +66,9 @@ const ServicesSection: FC = () => {
             >
               {/* Image */}
               <div
-                className={"md:col-span-7 " + (index % 2 === 1 ? "md:order-2" : "")}
+                className={
+                  "md:col-span-7 " + (index % 2 === 1 ? "md:order-2" : "")
+                }
               >
                 <div className="overflow-hidden rounded-2xl bg-white/40 shadow-sm">
                   <div className="relative w-full pb-[70%]">
@@ -93,15 +86,15 @@ const ServicesSection: FC = () => {
 
               {/* Text */}
               <div
-                className={"md:col-span-5 " + (index % 2 === 1 ? "md:order-1" : "")}
+                className={
+                  "md:col-span-5 " + (index % 2 === 1 ? "md:order-1" : "")
+                }
               >
                 <h3 className="font-serif uppercase text-3xl md:text-5xl leading-tight">
                   {s.title}
                 </h3>
                 <div className="w-16 h-[2px] bg-[#2E3E3B]/60 rounded-full my-4" />
-                <p className="opacity-80 leading-relaxed">
-                  {s.text}
-                </p>
+                <p className="opacity-80 leading-relaxed">{s.text}</p>
               </div>
             </motion.div>
           ))}

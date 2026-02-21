@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Allura } from "next/font/google";
 import { Menu, Mail, Phone } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 const allura = Allura({ subsets: ["latin"], weight: ["400"] });
 
@@ -42,27 +42,28 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-[#E4E0DB] text-[#2E3E3B]">
-      {/* Top navigation consistent with site */}
-      <nav className="w-full flex justify-between items-start px-6 md:px-8 py-6">
-        {/* Left: title + icons */}
-        <div className="flex flex-col items-start gap-2">
-          <h1 className={`${allura.className} text-4xl md:text-6xl`} style={{ color: "#2E3E3B" }}>
+      {/* Top navigation with centered menu */}
+      <nav className="w-full grid grid-cols-3 items-center px-6 md:px-8 py-6">
+        {/* Left: smaller title */}
+        <div className="flex items-center">
+          <h1 className={`${allura.className} text-3xl md:text-5xl`} style={{ color: "#2E3E3B" }}>
             Liliana Pinto Pereira
           </h1>
-          <div className="flex space-x-4 pt-1 text-[#2E3E3B]">
-            <a href="#" aria-label="Facebook" className="hover:opacity-70"><FaFacebookF size={22} /></a>
-            <a href="#" aria-label="LinkedIn" className="hover:opacity-70"><FaLinkedinIn size={22} /></a>
-          </div>
         </div>
 
-        {/* Right: menu */}
-        <div className="flex flex-col items-end gap-2">
-          <div className="hidden sm:flex space-x-8 text-base md:text-lg font-medium md:font-semibold">
-            <Link href="/#sobre" className={`hover:opacity-80 border-b-2 ${isActive("/#sobre") ? "border-[#2E3E3B]" : "border-transparent"}`}>Sobre</Link>
-            <Link href="/#servicos" className={`hover:opacity-80 border-b-2 ${isActive("/#servicos") ? "border-[#2E3E3B]" : "border-transparent"}`}>Serviços</Link>
-            <Link href="/contact" className={`hover:opacity-80 border-b-2 ${isActive("/contact") ? "border-[#2E3E3B]" : "border-transparent"}`}>Contacto</Link>
-            <Link href="/blog" className={`hover:opacity-80 border-b-2 ${isActive("/blog") ? "border-[#2E3E3B]" : "border-transparent"}`}>Blog</Link>
-          </div>
+        {/* Center: menu (desktop) */}
+        <div className="hidden sm:flex justify-center space-x-8 text-base md:text-lg font-medium md:font-semibold">
+          <Link href="/" className="hover:opacity-80 border-b-2 border-transparent">Início</Link>
+          <Link href="/sobre-mim" className={`hover:opacity-80 border-b-2 ${isActive("/sobre-mim") ? "border-[#2E3E3B]" : "border-transparent"}`}>Sobre Mim</Link>
+          <Link href="/#servicos" className="hover:opacity-80 border-b-2 border-transparent">Consultas</Link>
+          <Link href="/contact" className={`hover:opacity-80 border-b-2 ${isActive("/contact") ? "border-[#2E3E3B]" : "border-transparent"}`}>Contacto</Link>
+          <Link href="/blog" className={`hover:opacity-80 border-b-2 ${isActive("/blog") ? "border-[#2E3E3B]" : "border-transparent"}`}>Blog</Link>
+        </div>
+
+        {/* Right: social icons + mobile menu toggle */}
+        <div className="flex items-center justify-end gap-4 text-[#2E3E3B]">
+          <a href="#" aria-label="Facebook" className="hover:opacity-80"><FaFacebookF size={20} /></a>
+          <a href="#" aria-label="Instagram" className="hover:opacity-80"><FaInstagram size={20} /></a>
           {/* Mobile compact menu */}
           <div className="sm:hidden">
             <button
@@ -73,17 +74,22 @@ export default function ContactPage() {
             >
               <Menu className="w-5 h-5" />
             </button>
-            {open && (
-              <div className="mt-2 rounded-md border border-[#2E3E3B]/15 bg-white/40 p-3 text-sm shadow-sm space-y-2 text-right">
-                <Link href="/#sobre" onClick={() => setOpen(false)} className="block hover:opacity-80">Sobre</Link>
-                <Link href="/#servicos" onClick={() => setOpen(false)} className="block hover:opacity-80">Serviços</Link>
-                <Link href="/contact" onClick={() => setOpen(false)} className="block hover:opacity-80">Contacto</Link>
-                <Link href="/blog" onClick={() => setOpen(false)} className="block hover:opacity-80">Blog</Link>
-              </div>
-            )}
           </div>
         </div>
       </nav>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div className="px-6 sm:hidden">
+          <div className="mt-2 ml-auto w-fit rounded-md border border-[#2E3E3B]/15 bg-white/60 p-3 text-sm shadow-sm space-y-2 text-right">
+            <Link href="/" onClick={() => setOpen(false)} className="block hover:opacity-80">Início</Link>
+                <Link href="/sobre-mim" onClick={() => setOpen(false)} className="block hover:opacity-80">Sobre Mim</Link>
+            <Link href="/#servicos" onClick={() => setOpen(false)} className="block hover:opacity-80">Consultas</Link>
+            <Link href="/contact" onClick={() => setOpen(false)} className="block hover:opacity-80">Contacto</Link>
+            <Link href="/blog" onClick={() => setOpen(false)} className="block hover:opacity-80">Blog</Link>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <section className="mx-auto max-w-5xl px-6 pt-6 pb-16">

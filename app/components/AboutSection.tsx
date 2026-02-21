@@ -18,7 +18,7 @@ const AboutSection = () => {
       />
       <div className="relative mx-auto max-w-5xl">
         <h2 className="font-serif uppercase text-4xl md:text-6xl tracking-wide text-center mb-16">
-          Sobre mim
+          Sobre Mim
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">

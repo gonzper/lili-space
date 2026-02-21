@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 import { Allura } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
@@ -51,44 +51,44 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[#6b847b]/70" />
 
       {/* Navbar */}
-      <nav className="absolute top-0 left-0 w-full flex justify-between items-start px-6 md:px-8 py-6 text-white z-20">
-        {/* Left: title + icons below */}
-        <div className="z-20 flex flex-col items-start gap-2">
+      <nav className="absolute top-0 left-0 w-full grid grid-cols-3 items-center px-6 md:px-8 py-6 text-white z-20">
+        {/* Left: título reduzido */}
+        <div className="z-20 flex items-center">
           <h1
-            className={`${allura.className} text-4xl md:text-6xl drop-shadow-lg`}
+            className={`${allura.className} text-3xl md:text-5xl drop-shadow-lg`}
             style={{ color: "#E4E0DB" }}
           >
             Liliana Pinto Pereira
           </h1>
-          <div className="flex space-x-4 pt-1">
-            <a href="#" aria-label="Facebook" className="hover:text-gray-300">
-              <FaFacebookF size={24} />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-gray-300">
-              <FaLinkedinIn size={24} />
-            </a>
-          </div>
         </div>
 
-        {/* Right: menu (desktop) + compact (mobile) */}
-        <div className="flex flex-col items-end gap-2 z-20">
-          {/* Desktop menu */}
-          <div className="hidden sm:flex space-x-8 text-base md:text-lg font-medium md:font-semibold">
-            <a
-              href="#sobre"
-              className={`hover:text-gray-300 border-b-2 ${active === "sobre" ? "border-white/90" : "border-transparent"}`}
-            >
-              Sobre
-            </a>
-            <a
-              href="#servicos"
-              className={`hover:text-gray-300 border-b-2 ${active === "servicos" ? "border-white/90" : "border-transparent"}`}
-            >
-              Serviços
-            </a>
-            <a href="/contact" className="hover:text-gray-300 border-b-2 border-transparent">Contacto</a>
-            <a href="/blog" className="hover:text-gray-300 border-b-2 border-transparent">Blog</a>
-          </div>
+        {/* Centro: menu (desktop) */}
+        <div className="hidden sm:flex justify-center space-x-8 text-base md:text-lg font-medium md:font-semibold z-20">
+          <a
+            href="/"
+            className={`hover:text-gray-300 border-b-2 ${active === "sobre" ? "border-white/90" : "border-transparent"}`}
+          >
+            Início
+          </a>
+          <a href="/sobre-mim" className="hover:text-gray-300 border-b-2 border-transparent">Sobre Mim</a>
+          <a
+            href="#servicos"
+            className={`hover:text-gray-300 border-b-2 ${active === "servicos" ? "border-white/90" : "border-transparent"}`}
+          >
+            Consultas
+          </a>
+          <a href="/contact" className="hover:text-gray-300 border-b-2 border-transparent">Contacto</a>
+          <a href="/blog" className="hover:text-gray-300 border-b-2 border-transparent">Blog</a>
+        </div>
+
+        {/* Direita: redes sociais + menu mobile */}
+        <div className="z-20 flex items-center justify-end gap-4">
+          <a href="#" aria-label="Facebook" className="hover:text-gray-300">
+            <FaFacebookF size={22} />
+          </a>
+          <a href="#" aria-label="Instagram" className="hover:text-gray-300">
+            <FaInstagram size={22} />
+          </a>
           {/* Mobile compact menu */}
           <div className="sm:hidden">
             <button
@@ -99,29 +99,32 @@ export default function HeroSection() {
             >
               <Menu className="w-5 h-5" />
             </button>
-            {menuOpen && (
-              <div className="mt-2 rounded-md border border-white/10 bg-white/10 p-3 text-sm backdrop-blur shadow-md space-y-2 text-right">
-                <a
-                  href="#sobre"
-                  className={`block hover:text-gray-300 border-b ${active === "sobre" ? "border-white/80" : "border-transparent"}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Sobre
-                </a>
-                <a
-                  href="#servicos"
-                  className={`block hover:text-gray-300 border-b ${active === "servicos" ? "border-white/80" : "border-transparent"}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Serviços
-                </a>
-                <a href="/contact" className="block hover:text-gray-300" onClick={() => setMenuOpen(false)}>Contacto</a>
-                <a href="/blog" className="block hover:text-gray-300" onClick={() => setMenuOpen(false)}>Blog</a>
-              </div>
-            )}
           </div>
         </div>
       </nav>
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <div className="absolute top-[76px] right-6 sm:hidden z-20 rounded-md border border-white/10 bg-white/10 p-3 text-sm backdrop-blur shadow-md space-y-2 text-right">
+          <a
+            href="/"
+            className={`block hover:text-gray-300 border-b ${active === "sobre" ? "border-white/80" : "border-transparent"}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Início
+          </a>
+          <a href="/sobre-mim" className="block hover:text-gray-300 border-b border-transparent" onClick={() => setMenuOpen(false)}>Sobre Mim</a>
+          <a
+            href="#servicos"
+            className={`block hover:text-gray-300 border-b ${active === "servicos" ? "border-white/80" : "border-transparent"}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Consultas
+          </a>
+          <a href="/contact" className="block hover:text-gray-300" onClick={() => setMenuOpen(false)}>Contacto</a>
+          <a href="/blog" className="block hover:text-gray-300" onClick={() => setMenuOpen(false)}>Blog</a>
+        </div>
+      )}
 
       {/* Hero content */}
       <div className="relative z-10 flex flex-1 flex-col justify-center items-stretch text-white px-6">

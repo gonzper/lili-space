@@ -4,26 +4,19 @@ const AboutSection = () => {
   return (
     <section
       id="sobre"
-      className="relative bg-[#E4E0DB] text-[#2E3E3B] py-20 px-6 overflow-hidden"
+      className="relative bg-[#E4E0DB] text-[#2E3E3B] py-20 px-6"
     >
-      {/* subtle texture overlay */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: "url(/background-texture.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-      <div className="relative mx-auto max-w-5xl">
-        <h2 className="font-serif uppercase text-4xl md:text-6xl tracking-wide text-center mb-16">
-          Sobre Mim
+      <div className="relative mx-auto max-w-6xl">
+        <h2
+          className="font-serif text-4xl md:text-6xl leading-tight tracking-tight text-center mb-12 md:mb-16"
+          style={{ color: '#B08E7A' }}
+        >
+          Bem‑vindo(a)
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-12 items-start">
           <div className="md:col-span-2">
-            <div className="relative overflow-hidden rounded-xl shadow-sm bg-white/30">
+            <div className="relative overflow-hidden rounded-xl shadow-sm bg-white/40">
               {/* Enforce 4:5 portrait crop */}
               <div className="relative w-full pb-[105%]">
                 <Image
@@ -38,7 +31,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="md:col-span-3 text-left">
+          <div className="md:col-span-3 text-left md:pt-2">
             <p className="opacity-90 leading-relaxed">
               Olá! Eu sou a Liliana! Sempre senti uma enorme curiosidade em
               compreender quem somos e como podemos viver de forma mais plena e

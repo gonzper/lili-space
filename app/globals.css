@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply bg-cover bg-center bg-fixed bg-no-repeat;
-  background-image: url("/background-texture.jpg");
+  /* Minimal global background (page) */
+  background-color: #E4E0DB;
   font-family: var(--font-opensans);
 }
 
@@ -37,4 +37,17 @@ h6 {
   .flower-breath {
     animation: none !important;
   }
+}
+
+/* Subtle fade/slide for highlighted text */
+@keyframes fade-subtle {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-subtle { opacity: 0; animation: fade-subtle 0.8s ease-out 0.15s forwards; }
+.fade-subtle-2 { opacity: 0; animation: fade-subtle 0.9s ease-out 0.35s forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-subtle, .fade-subtle-2 { animation: none !important; opacity: 1 !important; }
 }

@@ -1,7 +1,5 @@
 import HeroSection from "./components/HeroSection";
-import ServicesSection from "./components/ServicesSection";
 import AboutSection from "./components/AboutSection";
-import ContactCtaSection from "./components/ContactCtaSection";
 import QuoteSection from "./components/QuoteSection";
 
 export default function Home() {
@@ -10,8 +8,6 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <QuoteSection />
-      <ServicesSection />
-      <ContactCtaSection />
     </main>
   );
 }

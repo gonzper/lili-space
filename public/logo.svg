@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="300" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .primary { fill: none; stroke: #8C7A6B; stroke-width: 3; }
+            .text-main { fill: #8C7A6B; font-family: 'Georgia', serif; }
+            .name { font-size: 72px; font-style: italic; }
+        </style>
+    </defs>
+
+    <!-- Head outline -->
+    <path class="primary" d="M150 60 
+        C110 60, 90 110, 110 150
+        C120 170, 120 200, 150 220
+        C180 200, 180 170, 170 150
+        C190 110, 170 60, 150 60 Z" />
+
+    <!-- Leaf inside head -->
+    <path class="primary" d="M150 100 C170 120, 170 160, 150 190" />
+    <path class="primary" d="M150 120 C130 130, 130 150, 150 160" />
+    <path class="primary" d="M150 130 C170 140, 170 150, 150 170" />
+
+    <!-- Name -->
+    <text x="260" y="150" class="text-main name">Liliana Pinto Pereira</text>
+</svg>

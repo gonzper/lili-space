@@ -1,23 +1,14 @@
 export default function QuoteSection() {
   return (
-    <section className="bg-[#6b847b] text-[#E4E0DB] py-20 px-6">
-      <div className="mx-auto max-w-4xl text-center">
-        <p className="font-serif text-4xl md:text-6xl leading-tight">
-          “Tu próprio, tanto quanto qualquer outro ser no universo,
-          mereces o teu amor e o teu afecto.”
+    <section className="py-16 px-6 bg-[#8C7A6B] text-[#E4E0DB]">
+      <div className="mx-auto max-w-5xl text-center">
+        <p
+          className="text-3xl md:text-5xl leading-tight tracking-tight"
+          style={{ fontFamily: 'var(--font-playfair)' }}
+        >
+          Cuidar de ti é um ato de consciência: corpo, emoções, mente e alma em conexão…
+          lembra-te que és a pessoa mais importante da tua vida
         </p>
-        <p className="mt-4 text-sm italic opacity-90">— Buda</p>
-        <div className="mt-3 flex justify-center" aria-hidden>
-          <svg viewBox="0 0 300 20" className="w-40 h-4 text-[#E4E0DB]/70">
-            <path
-              d="M5 10 C 80 2, 220 18, 295 10"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
       </div>
     </section>
   );

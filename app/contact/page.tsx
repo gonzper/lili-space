@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../components/Logo";
 import { usePathname } from "next/navigation";
-import { Allura } from "next/font/google";
 import { Menu, Mail, Phone } from "lucide-react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
-
-const allura = Allura({ subsets: ["latin"], weight: ["400"] });
 
 export default function ContactPage() {
   const pathname = usePathname();
@@ -42,22 +41,22 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-[#E4E0DB] text-[#2E3E3B]">
-      {/* Top navigation with centered menu */}
-      <nav className="w-full grid grid-cols-3 items-center px-6 md:px-8 py-6">
-        {/* Left: smaller title */}
-        <div className="flex items-center">
-          <h1 className={`${allura.className} text-3xl md:text-5xl`} style={{ color: "#2E3E3B" }}>
-            Liliana Pinto Pereira
-          </h1>
-        </div>
+      {/* Floating logo (outside nav) */}
+      <div className="fixed top-3 left-6 z-40">
+        <Logo className="h-24 w-auto md:h-32" priority />
+      </div>
+      {/* Top navigation fixed */}
+      <nav className="fixed top-0 left-0 w-full grid grid-cols-3 items-center px-6 md:px-8 py-4 md:py-5 z-30 bg-[#E4E0DB]/90 backdrop-blur text-[#8C7A6B]" style={{ fontFamily: 'var(--font-playfair)' }}>
+        {/* Left: logo */}
+        <div className="flex items-center" />
 
         {/* Center: menu (desktop) */}
         <div className="hidden sm:flex justify-center space-x-8 text-base md:text-lg font-medium md:font-semibold">
-          <Link href="/" className="hover:opacity-80 border-b-2 border-transparent">Início</Link>
-          <Link href="/sobre-mim" className={`hover:opacity-80 border-b-2 ${isActive("/sobre-mim") ? "border-[#2E3E3B]" : "border-transparent"}`}>Sobre Mim</Link>
-          <Link href="/#servicos" className="hover:opacity-80 border-b-2 border-transparent">Consultas</Link>
-          <Link href="/contact" className={`hover:opacity-80 border-b-2 ${isActive("/contact") ? "border-[#2E3E3B]" : "border-transparent"}`}>Contacto</Link>
-          <Link href="/blog" className={`hover:opacity-80 border-b-2 ${isActive("/blog") ? "border-[#2E3E3B]" : "border-transparent"}`}>Blog</Link>
+          <Link href="/" className={`hover:opacity-80 border-b-2 ${isActive("/") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}>Início</Link>
+          <Link href="/sobre-mim" className={`hover:opacity-80 border-b-2 ${isActive("/sobre-mim") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}>Sobre Mim</Link>
+          <Link href="/consultas" className={`hover:opacity-80 border-b-2 ${isActive("/consultas") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}>Consultas</Link>
+          <Link href="/contact" className={`hover:opacity-80 border-b-2 ${isActive("/contact") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}>Contacto</Link>
+          <Link href="/blog" className={`hover:opacity-80 border-b-2 ${isActive("/blog") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}>Blog</Link>
         </div>
 
         {/* Right: social icons + mobile menu toggle */}
@@ -84,7 +83,7 @@ export default function ContactPage() {
           <div className="mt-2 ml-auto w-fit rounded-md border border-[#2E3E3B]/15 bg-white/60 p-3 text-sm shadow-sm space-y-2 text-right">
             <Link href="/" onClick={() => setOpen(false)} className="block hover:opacity-80">Início</Link>
                 <Link href="/sobre-mim" onClick={() => setOpen(false)} className="block hover:opacity-80">Sobre Mim</Link>
-            <Link href="/#servicos" onClick={() => setOpen(false)} className="block hover:opacity-80">Consultas</Link>
+            <Link href="/consultas" onClick={() => setOpen(false)} className="block hover:opacity-80">Consultas</Link>
             <Link href="/contact" onClick={() => setOpen(false)} className="block hover:opacity-80">Contacto</Link>
             <Link href="/blog" onClick={() => setOpen(false)} className="block hover:opacity-80">Blog</Link>
           </div>
@@ -96,7 +95,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           {/* Info */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4">Marca a tua consulta</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4" style={{ color: '#B08E7A' }}>Marca a tua consulta</h2>
             <p className="opacity-80 mb-6">
               A primeira sessão é gratuita e online. Partilha os teus dados e
               disponibilidade; entrarei em contacto para alinharmos a proposta

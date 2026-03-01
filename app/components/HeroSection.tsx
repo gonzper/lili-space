@@ -3,90 +3,96 @@
 import { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
-import { Allura } from "next/font/google";
-import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import Logo from "./Logo";
 import { Menu } from "lucide-react";
-
-// Fonte manuscrita
-const allura = Allura({
-  subsets: ["latin"],
-  weight: ["400"],
-});
+import { usePathname } from "next/navigation";
 
 export default function HeroSection() {
-  const shouldReduceMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Initialize from current hash
+    // Initialize from current hash (only 'sobre')
     if (typeof window !== "undefined") {
       const hash = window.location.hash?.replace("#", "");
-      if (hash === "sobre" || hash === "servicos") setActive(hash);
+      if (hash === "sobre") setActive(hash);
     }
 
-    // Observe sections visibility to update active link
-    const ids = ["sobre", "servicos"];
+    // Observe only the 'sobre' section
+    const ids = ["sobre"];
     const els = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => !!el);
     if (!els.length || !("IntersectionObserver" in window)) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        // Pick the most visible entry
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
+          .sort(
+            (a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0),
+          )[0];
         if (visible?.target?.id) setActive(visible.target.id);
       },
-      { root: null, threshold: [0.4, 0.6, 0.8] }
+      { root: null, threshold: [0.4, 0.6, 0.8] },
     );
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
   return (
     <section className="relative h-screen flex flex-col">
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-[#6b847b]/70" />
+      {/* Background (solid, sem imagem) */}
+      <div className="absolute inset-0 bg-[#E4E0DB]" />
 
       {/* Navbar */}
-      <nav className="absolute top-0 left-0 w-full grid grid-cols-3 items-center px-6 md:px-8 py-6 text-white z-20">
+      <nav
+        className="fixed top-0 left-0 w-full grid grid-cols-3 items-center px-6 md:px-8 py-4 md:py-5 text-[#8C7A6B] z-40 bg-[#E4E0DB]/90 backdrop-blur"
+        style={{ fontFamily: "var(--font-playfair)" }}
+      >
         {/* Left: título reduzido */}
-        <div className="z-20 flex items-center">
-          <h1
-            className={`${allura.className} text-3xl md:text-5xl drop-shadow-lg`}
-            style={{ color: "#E4E0DB" }}
-          >
-            Liliana Pinto Pereira
-          </h1>
-        </div>
+        <div className="z-20 flex items-center" />
 
         {/* Centro: menu (desktop) */}
         <div className="hidden sm:flex justify-center space-x-8 text-base md:text-lg font-medium md:font-semibold z-20">
           <a
             href="/"
-            className={`hover:text-gray-300 border-b-2 ${active === "sobre" ? "border-white/90" : "border-transparent"}`}
+            className={`hover:opacity-80 border-b-2 ${pathname === "/" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
           >
             Início
           </a>
-          <a href="/sobre-mim" className="hover:text-gray-300 border-b-2 border-transparent">Sobre Mim</a>
           <a
-            href="#servicos"
-            className={`hover:text-gray-300 border-b-2 ${active === "servicos" ? "border-white/90" : "border-transparent"}`}
+            href="/sobre-mim"
+            className={`hover:opacity-80 border-b-2 ${pathname === "/sobre-mim" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
+          >
+            Sobre Mim
+          </a>
+          <a
+            href="/consultas"
+            className={`hover:opacity-80 border-b-2 ${pathname === "/consultas" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
           >
             Consultas
           </a>
-          <a href="/contact" className="hover:text-gray-300 border-b-2 border-transparent">Contacto</a>
-          <a href="/blog" className="hover:text-gray-300 border-b-2 border-transparent">Blog</a>
+          <a
+            href="/contact"
+            className={`hover:opacity-80 border-b-2 ${pathname === "/contact" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
+          >
+            Contacto
+          </a>
+          <a
+            href="/blog"
+            className={`hover:opacity-80 border-b-2 ${pathname?.startsWith("/blog") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
+          >
+            Blog
+          </a>
         </div>
 
         {/* Direita: redes sociais + menu mobile */}
         <div className="z-20 flex items-center justify-end gap-4">
-          <a href="#" aria-label="Facebook" className="hover:text-gray-300">
+          <a href="#" aria-label="Facebook" className="hover:opacity-80">
             <FaFacebookF size={22} />
           </a>
-          <a href="#" aria-label="Instagram" className="hover:text-gray-300">
+          <a href="#" aria-label="Instagram" className="hover:opacity-80">
             <FaInstagram size={22} />
           </a>
           {/* Mobile compact menu */}
@@ -95,7 +101,7 @@ export default function HeroSection() {
               aria-label="Abrir menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="inline-flex items-center justify-center rounded-md border border-white/20 bg-white/10 px-3 py-2 backdrop-blur hover:bg-white/15 transition"
+              className="inline-flex items-center justify-center rounded-md border border-[#2E3E3B]/20 bg-[#2E3E3B]/10 px-3 py-2 hover:bg-[#2E3E3B]/15 transition"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -105,131 +111,75 @@ export default function HeroSection() {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="absolute top-[76px] right-6 sm:hidden z-20 rounded-md border border-white/10 bg-white/10 p-3 text-sm backdrop-blur shadow-md space-y-2 text-right">
+        <div className="absolute top-[76px] right-6 sm:hidden z-20 rounded-md border border-[#2E3E3B]/15 bg-white/80 p-3 text-sm shadow-md space-y-2 text-right">
           <a
             href="/"
-            className={`block hover:text-gray-300 border-b ${active === "sobre" ? "border-white/80" : "border-transparent"}`}
+            className={`block hover:opacity-80 border-b-2 ${pathname === "/" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
             onClick={() => setMenuOpen(false)}
           >
             Início
           </a>
-          <a href="/sobre-mim" className="block hover:text-gray-300 border-b border-transparent" onClick={() => setMenuOpen(false)}>Sobre Mim</a>
           <a
-            href="#servicos"
-            className={`block hover:text-gray-300 border-b ${active === "servicos" ? "border-white/80" : "border-transparent"}`}
+            href="/sobre-mim"
+            className={`block hover:opacity-80 border-b-2 ${pathname === "/sobre-mim" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Sobre Mim
+          </a>
+          <a
+            href="/consultas"
+            className={`block hover:opacity-80 border-b-2 ${pathname === "/consultas" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
             onClick={() => setMenuOpen(false)}
           >
             Consultas
           </a>
-          <a href="/contact" className="block hover:text-gray-300" onClick={() => setMenuOpen(false)}>Contacto</a>
-          <a href="/blog" className="block hover:text-gray-300" onClick={() => setMenuOpen(false)}>Blog</a>
+          <a
+            href="/contact"
+            className={`block hover:opacity-80 border-b-2 ${pathname === "/contact" ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Contacto
+          </a>
+          <a
+            href="/blog"
+            className={`block hover:opacity-80 border-b-2 ${pathname?.startsWith("/blog") ? "border-[#8C7A6B]" : "border-transparent hover:border-[#8C7A6B]"}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Blog
+          </a>
         </div>
       )}
 
-      {/* Hero content */}
-      <div className="relative z-10 flex flex-1 flex-col justify-center items-stretch text-white px-6">
-        <div className="mx-auto w-full max-w-3xl">
-          {/* Parte 1: à esquerda */}
-          <p className="tracking-wide text-sm md:text-base mb-4 text-left pl-4 md:pl-12">
-          “Não existe um caminho para a felicidade,
+      {/* Hero content (logo + headline, subtexto, CTA e frase final) */}
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-start text-[#2E3E3B] px-6 pt-20 md:pt-24">
+        <Logo className="w-auto h-56 sm:h-72 md:h-96 lg:h-[28rem]" priority />
+        <div className="mt-1 md:mt-2 text-center max-w-none" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h1
+            className="text-4xl md:text-[44px] leading-tight md:leading-tight tracking-tight fade-subtle text-[#B08E7A] whitespace-normal md:whitespace-nowrap"
+          >
+            A <span className="text-[#8C7A6B]">vida</span> convida‑nos a ouvir o que <span className="text-[#8C7A6B]">sentimos</span> e a descobrir quem realmente <span className="text-[#8C7A6B]">somos</span>.
+          </h1>
+        </div>
+        <div className="mt-auto w-full text-center pb-8 md:pb-12" style={{ fontFamily: 'var(--font-opensans)' }}>
+          <p className="mx-auto text-base md:text-lg text-[#2E3E3B]/90 fade-subtle md:whitespace-nowrap">
+            Acompanho pessoas no seu processo de autoconhecimento, equilíbrio emocional e crescimento consciente.
           </p>
-
-        {/* Partes 2 e 3 com/sem animação */}
-        {shouldReduceMotion ? (
-          <>
-            {/* Parte 2: um degrau à direita */}
-            <h2 className="text-4xl md:text-6xl font-bold leading-tight text-left pl-16 md:pl-32 mt-3">
-              A felicidade é
-            </h2>
-            {/* Parte 3: mais um degrau */}
-            <h2 className="text-4xl md:text-7xl font-bold leading-tight mt-1 text-left pl-24 md:pl-56">
-              o caminho”
-            </h2>
-            <div className="pl-24 md:pl-56">
-              <svg
-                viewBox="0 0 480 30"
-                className="mt-3 w-64 md:w-[32rem] h-6 text-white/80"
-                aria-hidden
-              >
-                <path
-                  d="M5 20 C 160 6, 320 35, 475 18"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <p className="mt-2 text-xs italic opacity-90 text-left pl-24 md:pl-56">— Gandhi</p>
-          </>
-        ) : (
-          <>
-            {/* Parte 2: um degrau à direita (animação suave) */}
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-4xl md:text-6xl font-bold leading-tight text-left pl-16 md:pl-32 mt-3"
+          <p className="mx-auto mt-3 md:mt-4 text-base md:text-lg text-[#2E3E3B]/90 fade-subtle-2 md:whitespace-nowrap">
+            Na psicoterapia, encontrarás clareza, confiança e presença para fazer escolhas conscientes e autênticas.
+          </p>
+          <div className="mt-6 md:mt-7">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-[#8C7A6B] px-6 md:px-7 py-3 text-white shadow-sm border border-transparent hover:translate-y-[-1px] hover:shadow-md transition-all duration-200 hover:bg-[#7A6A5D] focus:outline-none focus:ring-2 focus:ring-[#8C7A6B]/30"
             >
-              A felicidade é
-            </motion.h2>
-            {/* Parte 3: mais um degrau (animação e leve atraso) */}
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-              className="text-4xl md:text-7xl font-bold leading-tight mt-1 text-left pl-24 md:pl-56"
-            >
-              o caminho”
-            </motion.h2>
-            <div className="pl-24 md:pl-56">
-              <motion.svg
-                viewBox="0 0 480 30"
-                className="mt-3 w-64 md:w-[32rem] h-6 text-white/80"
-                aria-hidden
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.1, duration: 0.4 }}
-              >
-                <motion.path
-                  d="M5 20 C 160 6, 320 35, 475 18"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  fill="none"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ delay: 1.1, duration: 1.6, ease: "easeInOut" }}
-                />
-              </motion.svg>
-            </div>
-            <motion.p
-              className="mt-2 text-xs italic opacity-90 text-left pl-24 md:pl-56"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.3, duration: 0.6 }}
-            >
-              — Gandhi
-            </motion.p>
-          </>
-        )}
+              Vem experimentar
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Bottom CTA */}
-      <div className="relative z-10 px-6 pb-10">
-        <div className="mx-auto max-w-3xl text-center text-white">
-          <p className="opacity-95 mb-4">
-            Ofereço-te a primeira sessão, que será gratuita e online, na qual teremos a oportunidade de nos conhecermos e de concebermos a proposta de intervenção mais adequada à tua situação.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-[#D49380] text-white px-6 py-3 rounded-full shadow-sm border border-white/10 hover:translate-y-[-1px] hover:shadow-md transition-all duration-200 hover:bg-[#c77c68] focus:outline-none focus:ring-2 focus:ring-white/30"
-          >
-            Marca a tua consulta
-          </Link>
-        </div>
-      </div>
+      {/* CTA removida nesta página */}
     </section>
   );
 }

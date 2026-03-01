@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Playfair_Display, Open_Sans } from "next/font/google";
+import Footer from "./components/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -25,8 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt">
-      <body className={`${playfair.variable} ${openSans.variable} font-sans`}>
-        {children}
+      <body className={`${playfair.variable} ${openSans.variable} font-sans min-h-screen flex flex-col`}>
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );

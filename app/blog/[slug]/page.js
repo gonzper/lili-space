@@ -38,7 +38,7 @@ export default function BlogPost({ params }) {
       </nav>
 
       {/* Content */}
-      <article className="mx-auto max-w-3xl px-6 pb-16 prose prose-slate">
+      <article className="mx-auto max-w-3xl px-6 pt-20 md:pt-28 pb-16 prose prose-slate">
         <h1 className="!mb-2">{data.title}</h1>
         {data.date && <p className="!mt-0 !mb-6 text-sm opacity-70">{data.date}</p>}
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />

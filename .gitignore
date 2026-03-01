@@ -30,3 +30,6 @@ Thumbs.db
 
 # Configurações do Next.js
 .next/
+
+# Exemplos
+/exemplos/

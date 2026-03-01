@@ -41,7 +41,7 @@ export default function BlogPage() {
       </nav>
 
       {/* Content */}
-      <section className="mx-auto max-w-3xl px-6 pb-16">
+      <section className="mx-auto max-w-3xl px-6 pt-20 md:pt-28 pb-16">
         <h2 className="text-3xl md:text-4xl font-semibold mb-8">Blog</h2>
         <ul className="divide-y divide-[#2E3E3B]/15">
           {posts.map((post) => (

@@ -92,7 +92,7 @@ export default function ContactPage() {
       )}
 
       {/* Content */}
-      <section className="mx-auto max-w-5xl px-6 pt-6 pb-16">
+      <section className="mx-auto max-w-5xl px-6 pt-20 md:pt-28 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           {/* Info */}
           <div>

@@ -50,8 +50,19 @@ export default function HeroSection() {
         className="fixed top-0 left-0 w-full grid grid-cols-3 items-center px-6 md:px-8 py-4 md:py-5 text-[#8C7A6B] z-40 bg-[#E4E0DB]/90 backdrop-blur"
         style={{ fontFamily: "var(--font-playfair)" }}
       >
-        {/* Left: título reduzido */}
-        <div className="z-20 flex items-center" />
+        {/* Left: mobile menu button */}
+        <div className="z-20 flex items-center">
+          <div className="sm:hidden">
+            <button
+              aria-label="Abrir menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="inline-flex items-center justify-center rounded-md border border-[#2E3E3B]/20 bg-[#2E3E3B]/10 px-3 py-2 hover:bg-[#2E3E3B]/15 transition"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
 
         {/* Centro: menu (desktop) */}
         <div className="hidden sm:flex justify-center space-x-8 text-base md:text-lg font-medium md:font-semibold z-20">
@@ -95,17 +106,6 @@ export default function HeroSection() {
           <a href="#" aria-label="Instagram" className="hover:opacity-80">
             <FaInstagram size={22} />
           </a>
-          {/* Mobile compact menu */}
-          <div className="sm:hidden">
-            <button
-              aria-label="Abrir menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
-              className="inline-flex items-center justify-center rounded-md border border-[#2E3E3B]/20 bg-[#2E3E3B]/10 px-3 py-2 hover:bg-[#2E3E3B]/15 transition"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-          </div>
         </div>
       </nav>
 

@@ -1,6 +1,6 @@
 export default function QuoteSection() {
   return (
-    <section className="py-16 px-6 bg-[#8C7A6B] text-[#E4E0DB]">
+    <section className="py-16 md:py-20 px-6 bg-[#8C7A6B] text-[#E4E0DB]">
       <div className="mx-auto max-w-5xl text-center">
         <p
           className="text-3xl md:text-5xl leading-tight tracking-tight"

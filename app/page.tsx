@@ -1,13 +1,13 @@
 import HeroSection from "./components/HeroSection";
-import AboutSection from "./components/AboutSection";
 import QuoteSection from "./components/QuoteSection";
+import AboutSection from "./components/AboutSection";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
-      <AboutSection />
       <QuoteSection />
+      <AboutSection />
     </main>
   );
 }

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../components/Logo";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import TopNav from "../components/TopNav";
+import { Check } from "lucide-react";
 
 export default function SobreMimPage() {
   return (
@@ -13,12 +13,41 @@ export default function SobreMimPage() {
       </div>
       <TopNav />
 
-      {/* Content */}
-      <section className="mx-auto max-w-6xl px-6 pt-24 md:pt-32 pb-14 md:pb-16">
-        {/* Bloco 1: texto à esquerda, foto à direita */}
+      {/* Header */}
+      <section className="mx-auto max-w-5xl px-6 pt-24 md:pt-32 pb-2 text-center">
+        <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-[#B08E7A]">
+          Sobre Mim
+        </h1>
+        <p className="mt-3 text-base md:text-lg text-[#2E3E3B] opacity-80">
+          A minha história, o meu caminho e o que me trouxe até aqui.
+        </p>
+        <div className="mt-6 flex justify-center">
+          <svg
+            width="140"
+            height="16"
+            viewBox="0 0 140 16"
+            fill="none"
+            aria-hidden
+          >
+            <path d="M2 8h48" stroke="#8C7A6B" strokeOpacity="0.45" />
+            <path d="M90 8h48" stroke="#8C7A6B" strokeOpacity="0.45" />
+            <path
+              d="M70 2c3 2.5 5 4 5 6s-2 3.5-5 6c-3-2.5-5-4-5-6s2-3.5 5-6Z"
+              fill="#B08E7A"
+              fillOpacity="0.35"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* Intro two columns */}
+      <section className="mx-auto max-w-6xl px-6 pt-10 pb-14 md:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
+          {/* Left: text */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4" style={{ color: '#B08E7A' }}>Olá,</h2>
+            <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-[#B08E7A]">
+              O meu percurso pessoal
+            </h2>
             <div className="space-y-4 leading-relaxed opacity-95">
               <p>
                 Sou psicóloga e psicoterapeuta, trabalho com pessoas que sentem
@@ -27,101 +56,100 @@ export default function SobreMimPage() {
                 investimento da sua vida é em si próprio.
               </p>
               <p>
-                Ao longo de mais de duas décadas de prática clínica e de
-                acompanhamento humano, tenho caminhado ao lado de pessoas em
-                momentos de transição, dúvida, cansaço emocional ou perda de
-                sentido. Acredito que a psicologia é, antes de tudo, um espaço
-                de encontro: consigo, com a sua história, com as suas emoções e
-                com aquilo que pede para ser escutado.
+                Acredito profundamente que cuidar de nós é um ato de consciência
+                e amor‑próprio que transforma verdadeiramente a nossa vida.
               </p>
               <p>
-                O meu trabalho assenta numa presença atenta, numa escuta
-                profunda e numa relação de confiança onde é possível abrandar,
-                compreender e transformar. Mais do que “resolver problemas”,
-                procuro ajudar cada pessoa a ganhar clareza, a reconectar-se com
-                os seus recursos internos e a encontrar formas mais conscientes
-                e alinhadas de viver.
+                Quero ajudar‑te a encontrar o teu próprio caminho de paz
+                interior, aceitação e realização, num espaço acolhedor e seguro.
               </p>
             </div>
           </div>
+
+          {/* Right: portrait */}
           <div className="md:pl-6">
-            <div className="rounded-2xl overflow-hidden border border-[#2E3E3B]/10 shadow-sm bg-white/40">
-              <img
-                src="/foto-lili-2.jpg"
-                alt="Fotografia de Liliana"
-                className="w-full h-auto object-cover"
-              />
+            <div className="rounded-2xl overflow-hidden border border-[#2E3E3B]/10 shadow-sm bg-white/60">
+              <div className="relative w-full pb-[125%]">
+                <Image
+                  src="/foto_pessoal.jpg"
+                  alt="Fotografia de Liliana"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bloco 2: foto à esquerda, texto à direita */}
-      <section className="mx-auto max-w-6xl px-6 pb-16 pt-16 md:pt-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
-          <div>
-            <div className="rounded-2xl overflow-hidden border border-[#2E3E3B]/10 shadow-sm bg-white/40">
-              <img
-                src="/foto-lili.jpg"
-                alt="Liliana em ambiente exterior"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
-          <div className="md:pl-6">
-            <h3 className="text-3xl md:text-4xl font-semibold mb-4" style={{ color: '#B08E7A' }}>
-              Especialista em Psicologia Clínica e da Saúde e em Psicologia do
-              Trabalho e das Organizações.
+      {/* Professional path */}
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <h2 className="text-2xl md:text-4xl font-semibold mb-6 text-[#B08E7A]">
+          Percurso Profissional
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Formação */}
+          <div className="rounded-xl border border-[#2E3E3B]/10 bg-[#2E3E3B]/5 shadow-sm p-6">
+            <h3 className="text-xl font-semibold mb-3 text-[#B08E7A]">
+              Formação
             </h3>
-            <div className="space-y-4 leading-relaxed opacity-95">
-              <p>
-                Sou licenciada em Psicologia Clínica, pós-graduada em
-                Psicoterapia Centrada no Cliente, realizei formação na área da
-                parentalidade, do mindfulness, do coaching e da gestão.
-              </p>
-              <p>
-                Desde 2003 que trabalho como psicóloga, aprendendo e ensinando a
-                arte de viver a pessoas de diferentes idades e culturas. Após a
-                conclusão da minha licenciatura vivi um ano em Moçambique, onde
-                trabalhei no Hospital público. Exerço psicologia clínica há 20
-                anos, dando consultas em clínicas privadas, ao longo da minha
-                carreira trabalhei ainda como coordenadora de projetos sociais,
-                fui formadora na área comportamental e do desenvolvimento de
-                competências sócio-emocionais (gestão emocional e comunicação).
-                Estive uma década ao serviço da Ordem dos Psicólogos, tendo
-                trabalhado na área da formação, na gestão de estágios
-                profissionais e gestão de carreira. Fiz especialização em
-                Psicoterapia Centrada na Pessoa (Humanista).
-              </p>
-            </div>
+            <ul className="space-y-3 text-[15px]">
+              <ListItem> Mestrado em Psicologia Clínica e da Saúde. </ListItem>
+              <ListItem>
+                {" "}
+                Pós‑graduação em Terapia de Casal e Sexualidade.{" "}
+              </ListItem>
+              <ListItem>
+                {" "}
+                Formação em Mindfulness e Terapias Integrativas.{" "}
+              </ListItem>
+            </ul>
+          </div>
+
+          {/* Áreas de especialização */}
+          <div className="rounded-xl border border-[#2E3E3B]/10 bg-[#2E3E3B]/5 shadow-sm p-6">
+            <h3 className="text-xl font-semibold mb-3 text-[#B08E7A]">
+              Áreas de especialização
+            </h3>
+            <ul className="space-y-3 text-[15px]">
+              <ListItem> Terapia individual </ListItem>
+              <ListItem> Parentalidade e educação consciente </ListItem>
+              <ListItem>
+                {" "}
+                Gestão de carreira e desenvolvimento pessoal{" "}
+              </ListItem>
+              <ListItem> Ansiedade, depressão e crescimento pessoal </ListItem>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Bloco 3: texto (sem imagem) */}
-      <section className="mx-auto max-w-4xl px-6 pb-16 pt-6 md:pt-10">
-        <div className="space-y-4 leading-relaxed opacity-95">
-          <p>
-            A intervenção psicológica que realizo é fruto da minha diversificada
-            experiência profissional e continuada formação. Inspiro-me nas
-            correntes humanistas e transpessoais, utilizando técnicas da
-            psicoterapia, do mindfulness, da inteligência emocional e do
-            coaching. A minha abordagem baseia-se em facilitar o processo de
-            auto-conhecimento do cliente, sustentando o processo individual de
-            crescimento pessoal e apoiando a pessoa na definição de estratégias
-            práticas para alcançar os seus objetivos, promovendo uma maior
-            qualidade de vida. Acredito que cada pessoa é única e possui os
-            recursos internos necessários para ser feliz, na minha visão, o
-            psicólogo é o catalisador da mudança que o cliente deseja ver
-            acontecer na sua vida.
-          </p>
-          <p>
-            Sou mãe, dou aulas de yoga e meditação há mais de uma década, quando
-            tenho algum tempo disponível adoro contemplar a natureza, ler e
-            fazer jardinagem, sempre que tenho oportunidade viajo pelo mundo.
-          </p>
+      {/* Commitment + CTA */}
+      <section className="mx-auto max-w-3xl px-6 pb-24 text-center">
+        <p className="text-xl md:text-2xl italic text-[#5C4A3F] opacity-95">
+          O meu compromisso é oferecer um espaço seguro, ético e respeitador,
+          onde possas sentir‑te verdadeiramente escutado(a).
+        </p>
+        <div className="mt-8">
+          <Link
+            href="/contact"
+            className="inline-flex items-center rounded-full bg-[#8C7A6B] px-7 py-3 text-white shadow-sm border border-transparent hover:translate-y-[-1px] hover:shadow-md transition-all duration-200 hover:bg-[#7A6A5D]"
+          >
+            Agendar sessão
+          </Link>
         </div>
       </section>
     </main>
+  );
+}
+
+function ListItem({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-2">
+      <Check className="mt-0.5 h-4 w-4 text-[#8C7A6B]" />
+      <span className="opacity-90">{children}</span>
+    </li>
   );
 }

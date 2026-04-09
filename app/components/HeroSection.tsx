@@ -160,19 +160,22 @@ export default function HeroSection() {
             A <span className="text-[#8C7A6B]">vida</span> convida‑nos a ouvir o que <span className="text-[#8C7A6B]">sentimos</span> e a descobrir quem realmente <span className="text-[#8C7A6B]">somos</span>.
           </h1>
         </div>
-        <div className="mt-auto w-full text-center pb-8 md:pb-12" style={{ fontFamily: 'var(--font-opensans)' }}>
-          <p className="mx-auto text-base md:text-lg text-[#2E3E3B]/90 fade-subtle md:whitespace-nowrap">
+        {/* Extra tagline lines in the same visual style */}
+        <div className="mt-8 md:mt-10 text-center" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <p className="text-2xl md:text-[28px] leading-snug text-[#B08E7A] fade-subtle">
             Acompanho pessoas no seu processo de autoconhecimento, equilíbrio emocional e crescimento consciente.
           </p>
-          <p className="mx-auto mt-3 md:mt-4 text-base md:text-lg text-[#2E3E3B]/90 fade-subtle-2 md:whitespace-nowrap">
+          <p className="mt-3 md:mt-4 text-2xl md:text-[28px] leading-snug text-[#B08E7A] fade-subtle-2">
             Na psicoterapia, encontrarás clareza, confiança e presença para fazer escolhas conscientes e autênticas.
           </p>
+        </div>
+        <div className="mt-auto w-full text-center pb-8 md:pb-12" style={{ fontFamily: 'var(--font-opensans)' }}>
           <div className="mt-6 md:mt-7">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#8C7A6B] px-6 md:px-7 py-3 text-white shadow-sm border border-transparent hover:translate-y-[-1px] hover:shadow-md transition-all duration-200 hover:bg-[#7A6A5D] focus:outline-none focus:ring-2 focus:ring-[#8C7A6B]/30"
+              className="inline-flex items-center gap-2 rounded-full px-6 md:px-7 py-3 text-[#8C7A6B] bg-[#8C7A6B]/15 border border-[#8C7A6B]/40 hover:bg-[#8C7A6B]/25 hover:translate-y-[-1px] hover:shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#8C7A6B]/30"
             >
-              Vem experimentar
+              Agendar sessão
             </Link>
           </div>
         </div>
